@@ -1,0 +1,40 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
+    }
+}
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version '2.0.4'
+    id 'java'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.11.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-jul', version: '2.11.0'
+    // https://mvnrepository.com/artifact/org.bidib.com.pi4j/pi4j-core
+    compile group: 'org.bidib.com.pi4j', name: 'pi4j-core', version: '1.2.M1'
+}
+
+version = '1.0'
+
+jar {
+    manifest.attributes provider: 'gradle'
+    manifest {
+        attributes 'Main-Class': 'org.acheron.sample.pi.gpio.Agent'
+    }
+}
+
